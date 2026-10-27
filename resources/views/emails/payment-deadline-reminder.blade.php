@@ -46,10 +46,10 @@
         </tr>
     </table>
 
-    <p>Mohon admin dan karyawan menindaklanjuti pembayaran sesuai kebutuhan.</p>
+    <p>Dimohon untuk dapat menindaklanjuti payment tersebut.</p>
 
     <p>
-        Email ini dikirim otomatis oleh Milnkys.
+        Email ini dikirim otomatis oleh Milnkys Warehouse Manager.
     </p>
 </body>
 </html>
