@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akun Karyawan - TokoAlma</title>
+    <title>Akun Karyawan - Milnkys</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="min-h-screen bg-slate-50 text-slate-800">
@@ -18,7 +18,7 @@
                 </a>
                 <h1 class="mt-2 text-2xl font-bold">Akun Karyawan</h1>
                 <p class="mt-1 text-sm text-slate-500">
-                    Kelola akun staff TokoAlma.
+                    Kelola akun staff Milnkys.
                 </p>
             </div>
 
@@ -120,7 +120,7 @@
                         <div>
                             <h2 class="text-lg font-bold">Daftar Karyawan</h2>
                             <p class="mt-1 text-sm text-slate-500">
-                                Akun staff yang terdaftar di TokoAlma.
+                                Akun staff yang terdaftar di Milnkys.
                             </p>
                         </div>
                         <span class="rounded-full bg-slate-100 px-3 py-1 text-sm font-semibold">

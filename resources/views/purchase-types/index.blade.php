@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#f5f7f1">
-    <title>Jenis Purchase - TokoAlma</title>
+    <title>Jenis Purchase - Milnkys</title>
 
     <style>
         * { box-sizing: border-box; }
@@ -258,7 +258,7 @@
     <a href="{{ route('dashboard') }}" class="back">← Kembali ke Dashboard</a>
 
     <header>
-        <div class="eyebrow">TOKOALMA · PENGATURAN</div>
+        <div class="eyebrow">MILNKYS · PENGATURAN</div>
         <h1>Jenis Purchase</h1>
         <p class="muted">Kelola jenis pembelian yang digunakan dalam pencatatan pesanan.</p>
     </header>
@@ -311,7 +311,7 @@
         <div class="list-header">
             <div>
                 <h2>Daftar Jenis Purchase</h2>
-                <p class="muted" style="margin:6px 0 0">Jenis pembelian yang tersedia di TokoAlma.</p>
+                <p class="muted" style="margin:6px 0 0">Jenis pembelian yang tersedia di Milnkys.</p>
             </div>
             <span class="count">{{ $purchaseTypes->count() }}</span>
         </div>

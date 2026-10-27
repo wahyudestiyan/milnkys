@@ -239,7 +239,7 @@
         </form>
 
         <p class="mt-5 text-center text-xs text-gray-400">
-            TokoAlma &copy; {{ date('Y') }}
+            Milnkys &copy; {{ date('Y') }}
         </p>
 
     </main>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#f5f7f1">
-    <title>Jenis Payment - TokoAlma</title>
+    <title>Jenis Payment - Milnkys</title>
 
     <style>
         * { box-sizing: border-box; }
@@ -254,9 +254,9 @@
     <a href="{{ route('dashboard') }}" class="back">← Kembali ke Dashboard</a>
 
     <header>
-        <div class="eyebrow">TOKOALMA · PENGATURAN</div>
+        <div class="eyebrow">MILNKYS· PENGATURAN</div>
         <h1>Jenis Payment</h1>
-        <p class="muted">Kelola metode pembayaran yang digunakan untuk transaksi TokoAlma.</p>
+        <p class="muted">Kelola metode pembayaran yang digunakan untuk transaksi Milnkys.</p>
     </header>
 
     @if (session('success'))
