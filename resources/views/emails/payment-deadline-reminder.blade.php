@@ -49,7 +49,7 @@
     <p>Mohon admin dan karyawan menindaklanjuti pembayaran sesuai kebutuhan.</p>
 
     <p>
-        Email ini dikirim otomatis oleh Japan Warehouse Manager.
+        Email ini dikirim otomatis oleh Milnkys.
     </p>
 </body>
 </html>
