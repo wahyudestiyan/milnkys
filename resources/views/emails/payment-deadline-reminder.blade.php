@@ -24,27 +24,50 @@
         </p>
     @endif
 
-    <table cellpadding="8" cellspacing="0" border="1"
-        style="border-collapse: collapse; border-color: #ddd;">
+    
+<table cellpadding="8" cellspacing="0" border="1"
+    style="border-collapse: collapse; border-color: #ddd;">
+    <tr>
+        <td><strong>Nomor Pesanan</strong></td>
+        <td>{{ $purchaseOrder->order_number }}</td>
+    </tr>
+    <tr>
+        <td><strong>Nama Customer</strong></td>
+        <td>{{ $purchaseOrder->customer_name }}</td>
+    </tr>
+    <tr>
+        <td><strong>Deadline</strong></td>
+        <td>
+            {{ $purchaseOrder->payment_deadline?->format('d-m-Y H:i') ?? '-' }}
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Website</strong></td>
+        <td>
+            @if ($purchaseOrder->website_url)
+                <a href="{{ $purchaseOrder->website_url }}">
+                    {{ $purchaseOrder->website_url }}
+                </a>
+            @else
+                -
+            @endif
+        </td>
+    </tr>
+
+    @if ($purchaseOrder->payment_url)
         <tr>
-            <td><strong>Nomor Pesanan</strong></td>
-            <td>{{ $purchaseOrder->order_number }}</td>
-        </tr>
-        <tr>
-            <td><strong>Nama Customer</strong></td>
-            <td>{{ $purchaseOrder->customer_name }}</td>
-        </tr>
-        <tr>
-            <td><strong>Deadline</strong></td>
+            <td><strong>Link Payment</strong></td>
             <td>
-                {{ $purchaseOrder->payment_deadline?->format('d-m-Y H:i') ?? '-' }}
+                <a href="{{ $purchaseOrder->payment_url }}"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Klik di sini untuk melakukan pembayaran
+                </a>
             </td>
         </tr>
-        <tr>
-            <td><strong>Website</strong></td>
-            <td>{{ $purchaseOrder->website_url ?? '-' }}</td>
-        </tr>
-    </table>
+    @endif
+</table>
+
 
     <p>Dimohon untuk dapat menindaklanjuti payment tersebut.</p>
 

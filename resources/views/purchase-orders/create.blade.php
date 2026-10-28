@@ -143,6 +143,28 @@
                     <div class="form-error">{{ $message }}</div>
                 @enderror
             </div>
+                    
+        <div class="form-group full">
+            <label class="form-label" for="payment_url">
+                Link Payment
+            </label>
+
+            <input class="form-control"
+                id="payment_url"
+                type="url"
+                name="payment_url"
+                value="{{ old('payment_url') }}"
+                placeholder="https://contoh-payment.jp">
+
+            <div class="form-help">
+                Link ini akan disertakan dalam email pengingat deadline pembayaran.
+            </div>
+
+            @error('payment_url')
+                <div class="form-error">{{ $message }}</div>
+            @enderror
+        </div>
+
         </div>
     </section>
 

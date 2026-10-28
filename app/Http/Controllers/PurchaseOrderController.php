@@ -56,6 +56,7 @@ class PurchaseOrderController extends Controller
                 'exists:payment_types,id',
             ],
             'website_url' => ['nullable', 'url', 'max:2000'],
+            'payment_url' => ['nullable', 'url', 'max:2048'],
             'purchase_proof' => [
                 'nullable',
                 'image',
@@ -76,6 +77,7 @@ class PurchaseOrderController extends Controller
             'purchase_type_id.required' => 'Jenis purchase wajib dipilih.',
             'payment_type_id.required' => 'Jenis pembayaran wajib dipilih.',
             'website_url.url' => 'Link website harus berupa URL yang valid.',
+            'payment_url.url' => 'Link payment harus berupa URL yang valid.',
             'purchase_proof.image' => 'Bukti purchase harus berupa gambar.',
             'purchase_proof.mimes' => 'Format bukti hanya JPG, JPEG, atau PNG.',
             'purchase_proof.max' => 'Ukuran gambar maksimal 5 MB.',
@@ -136,6 +138,7 @@ public function update(Request $request, PurchaseOrder $purchase)
         'purchase_type_id' => ['required', 'exists:purchase_types,id'],
         'payment_type_id' => ['required', 'exists:payment_types,id'],
         'website_url' => ['nullable', 'url', 'max:2000'],
+        'payment_url' => ['nullable', 'url', 'max:2048'],
         'purchase_proof' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:5120'],
         'payment_deadline' => ['nullable', 'date'],
         'warehouse_fee_jpy' => [

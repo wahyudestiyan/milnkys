@@ -94,6 +94,20 @@
                 @endif
             </div>
         </div>
+        <div class="form-group full">
+            <label class="form-label">Link Payment</label>
+            <div class="form-control" style="overflow-wrap:anywhere;">
+                @if ($purchase->payment_url)
+                    <a href="{{ $purchase->payment_url }}"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                        {{ $purchase->payment_url }}
+                    </a>
+                @else
+                    Tidak ada link payment
+                @endif
+            </div>
+        </div>
     </div>
 </div>
 

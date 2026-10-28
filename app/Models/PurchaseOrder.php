@@ -11,6 +11,7 @@ class PurchaseOrder extends Model
         'customer_name',
         'order_number',
         'website_url',
+        'payment_url',
         'purchase_type_id',
         'payment_type_id',
         'purchase_proof_path',
