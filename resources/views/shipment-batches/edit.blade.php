@@ -81,18 +81,19 @@
     </div>
 </div>
 
+
 <style>
     .container {
         max-width: 900px;
         margin: 0 auto;
         padding: 24px;
-        color: #253126;
+        color: var(--text);
     }
 
     .back-link {
         display: inline-block;
         margin-bottom: 20px;
-        color: #506744;
+        color: var(--primary);
         text-decoration: none;
         font-weight: 600;
     }
@@ -104,16 +105,17 @@
     .page-header h1 {
         margin: 0 0 6px;
         font-size: 26px;
+        color: var(--text);
     }
 
     .page-header p {
         margin: 0;
-        color: #748075;
+        color: var(--muted);
     }
 
     .panel {
-        background: #fff;
-        border: 1px solid #e4e9e2;
+        background: var(--surface);
+        border: 1px solid var(--border);
         border-radius: 14px;
         padding: 22px;
     }
@@ -121,12 +123,14 @@
     .panel h2 {
         margin: 0 0 18px;
         font-size: 18px;
+        color: var(--text);
     }
 
     label {
         display: block;
         font-weight: 600;
         margin-bottom: 8px;
+        color: var(--text);
     }
 
     input[type="text"],
@@ -134,10 +138,12 @@
         width: 100%;
         max-width: 500px;
         padding: 11px 12px;
-        border: 1px solid #d7ded5;
+        border: 1px solid var(--border);
         border-radius: 8px;
         margin-bottom: 14px;
         box-sizing: border-box;
+        color: var(--text);
+        background: var(--surface);
     }
 
     .period-fields {
@@ -167,13 +173,14 @@
     }
 
     .btn-primary {
-        background: #9CB080;
+        background: var(--primary);
         color: #fff;
     }
 
     .btn-secondary {
-        background: #edf1e9;
-        color: #40513c;
+        background: var(--bg);
+        color: var(--text);
+        border: 1px solid var(--border);
     }
 
     .alert {
@@ -183,8 +190,8 @@
     }
 
     .alert-danger {
-        background: #fff0ee;
-        color: #9a2921;
+        background: var(--danger-soft);
+        color: var(--danger);
     }
 
     @media (max-width: 600px) {
@@ -202,4 +209,5 @@
         }
     }
 </style>
+
 @endsection

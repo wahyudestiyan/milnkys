@@ -5,39 +5,149 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light">
+    <meta name="theme-color" content="{{ $themeColors['background'] ?? config('theme.colors.background', '#F5F8FF') }}">
     <title>Login - Milnkys</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        :root {
+            --primary: {{ $themeColors['primary'] ?? config('theme.colors.primary', '#2563EB') }};
+            --primary-dark: {{ $themeColors['primary_dark'] ?? config('theme.colors.primary_dark', '#1D4ED8') }};
+            --primary-soft: {{ $themeColors['primary_soft'] ?? config('theme.colors.primary_soft', '#DBEAFE') }};
+            --bg: {{ $themeColors['background'] ?? config('theme.colors.background', '#F5F8FF') }};
+            --surface: {{ $themeColors['surface'] ?? config('theme.colors.surface', '#FFFFFF') }};
+            --text: {{ $themeColors['text'] ?? config('theme.colors.text', '#1E293B') }};
+            --muted: {{ $themeColors['muted'] ?? config('theme.colors.muted', '#64748B') }};
+            --border: {{ $themeColors['border'] ?? config('theme.colors.border', '#E2E8F0') }};
+            --danger: {{ $themeColors['danger'] ?? config('theme.colors.danger', '#DC2626') }};
+            --danger-soft: {{ $themeColors['danger_soft'] ?? config('theme.colors.danger_soft', '#FEE2E2') }};
+            --success: {{ $themeColors['success'] ?? config('theme.colors.success', '#16A34A') }};
+            --success-soft: {{ $themeColors['success_soft'] ?? config('theme.colors.success_soft', '#DCFCE7') }};
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .login-logo {
+            background: var(--primary);
+            box-shadow: 0 10px 20px color-mix(in srgb, var(--primary) 20%, transparent);
+        }
+
+        .login-title {
+            color: var(--text);
+        }
+
+        .login-subtitle {
+            color: var(--muted);
+        }
+
+        .login-card {
+            background: var(--surface);
+        }
+
+        .login-label {
+            color: var(--text);
+        }
+
+        .login-input {
+            width: 100%;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+        }
+
+        .login-input::placeholder {
+            color: var(--muted);
+            opacity: .8;
+        }
+
+        .login-input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 20%, transparent);
+        }
+
+        .password-toggle {
+            color: var(--muted);
+        }
+
+        .password-toggle:hover {
+            color: var(--primary-dark);
+        }
+
+        .password-toggle:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: -4px;
+        }
+
+        .remember-checkbox {
+            accent-color: var(--primary);
+        }
+
+        .login-button {
+            background: var(--primary);
+            box-shadow: 0 4px 10px color-mix(in srgb, var(--primary) 20%, transparent);
+        }
+
+        .login-button:hover {
+            background: var(--primary-dark);
+        }
+
+        .login-button:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        .login-error {
+            background: var(--danger-soft);
+            color: var(--danger);
+        }
+
+        .login-success {
+            background: var(--success-soft);
+            color: var(--success);
+        }
+
+        .login-footer {
+            color: var(--muted);
+        }
+    </style>
 </head>
-<body class="min-h-screen bg-[#f5f6f0] flex items-center justify-center p-5">
+
+<body class="min-h-screen flex items-center justify-center p-5">
 
     <main class="w-full max-w-md">
+
         <!-- Header -->
         <div class="text-center mb-8">
-            <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#9CB080] text-3xl">
+            <div class="login-logo mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl text-3xl text-white">
                 🛍️
             </div>
 
-            <h1 class="text-3xl font-bold text-gray-800">Milnkys</h1>
-            <p class="mt-2 text-sm text-gray-500">
+            <h1 class="login-title text-3xl font-bold">Milnkys</h1>
+
+            <p class="login-subtitle mt-2 text-sm">
                 Silakan login untuk melanjutkan
             </p>
         </div>
 
         <!-- Login Card -->
-        <div class="rounded-3xl bg-white p-7 shadow-sm sm:p-9">
+        <div class="login-card rounded-3xl p-7 shadow-sm sm:p-9">
 
             @if ($errors->any())
                 <div
                     role="alert"
-                    class="mb-5 rounded-xl bg-red-50 p-3 text-sm text-red-700"
+                    class="login-error mb-5 rounded-xl p-3 text-sm"
                 >
                     {{ $errors->first() }}
                 </div>
             @endif
 
             @if (session('status'))
-                <div class="mb-5 rounded-xl bg-green-50 p-3 text-sm text-green-700">
+                <div class="login-success mb-5 rounded-xl p-3 text-sm">
                     {{ session('status') }}
                 </div>
             @endif
@@ -53,7 +163,7 @@
                 <div>
                     <label
                         for="email"
-                        class="mb-2 block text-sm font-medium text-gray-700"
+                        class="login-label mb-2 block text-sm font-medium"
                     >
                         Email
                     </label>
@@ -67,7 +177,7 @@
                         autofocus
                         autocomplete="username"
                         placeholder="nama@email.com"
-                        class="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none transition focus:border-[#9CB080] focus:ring-2 focus:ring-[#9CB080]/20"
+                        class="login-input rounded-xl px-4 py-3 transition"
                     >
                 </div>
 
@@ -75,7 +185,7 @@
                 <div>
                     <label
                         for="password"
-                        class="mb-2 block text-sm font-medium text-gray-700"
+                        class="login-label mb-2 block text-sm font-medium"
                     >
                         Password
                     </label>
@@ -88,7 +198,7 @@
                             required
                             autocomplete="current-password"
                             placeholder="Masukkan password"
-                            class="w-full rounded-xl border border-gray-200 px-4 py-3 pr-14 outline-none transition focus:border-[#9CB080] focus:ring-2 focus:ring-[#9CB080]/20"
+                            class="login-input rounded-xl py-3 pl-4 pr-14 transition"
                         >
 
                         <button
@@ -96,9 +206,8 @@
                             id="togglePassword"
                             aria-label="Tampilkan password"
                             aria-pressed="false"
-                            class="absolute inset-y-0 right-0 flex items-center px-4 text-gray-500 transition hover:text-[#71885A] focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#9CB080]"
+                            class="password-toggle absolute inset-y-0 right-0 flex items-center px-4 transition focus:outline-none"
                         >
-                            <!-- Ikon mata -->
                             <svg
                                 id="eyeIcon"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -120,12 +229,12 @@
                 </div>
 
                 <!-- Remember Me -->
-                <label class="flex items-center gap-2 text-sm text-gray-600">
+                <label class="login-subtitle flex items-center gap-2 text-sm">
                     <input
                         type="checkbox"
                         name="remember"
                         value="1"
-                        class="rounded border-gray-300 accent-[#9CB080]"
+                        class="remember-checkbox rounded"
                     >
                     Ingat saya
                 </label>
@@ -133,16 +242,17 @@
                 <!-- Submit -->
                 <button
                     type="submit"
-                    class="w-full rounded-xl bg-[#9CB080] px-4 py-3 font-semibold text-white transition hover:bg-[#879D6D] focus:outline-none focus:ring-2 focus:ring-[#9CB080] focus:ring-offset-2"
+                    class="login-button w-full rounded-xl px-4 py-3 font-semibold text-white transition focus:outline-none"
                 >
                     Masuk ke Milnkys
                 </button>
             </form>
         </div>
 
-        <p class="mt-6 text-center text-xs text-gray-400">
+        <p class="login-footer mt-6 text-center text-xs">
             &copy; {{ date('Y') }} Milnkys
         </p>
+
     </main>
 
     <script>

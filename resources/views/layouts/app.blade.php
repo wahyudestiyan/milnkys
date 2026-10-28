@@ -8,18 +8,23 @@
     <title>@yield('title', 'Milnkys') · Milnkys</title>
 
     <style>
-        :root {
-            --primary: #718765;
-            --primary-dark: #465b3d;
-            --primary-soft: #e8eee2;
-            --bg: #f5f7f1;
-            --surface: #ffffff;
-            --text: #263326;
-            --muted: #899184;
-            --border: #edf0e8;
-            --radius: 22px;
-            --danger: #b54747;
-        }
+        
+:root {
+    --primary: {{ $themeColors['primary'] ?? '#2563EB' }};
+    --primary-dark: {{ $themeColors['primary_dark'] ?? '#1D4ED8' }};
+    --primary-soft: {{ $themeColors['primary_soft'] ?? '#DBEAFE' }};
+    --bg: {{ $themeColors['background'] ?? '#F5F8FF' }};
+    --surface: {{ $themeColors['surface'] ?? '#FFFFFF' }};
+    --text: {{ $themeColors['text'] ?? '#1E293B' }};
+    --muted: {{ $themeColors['muted'] ?? '#64748B' }};
+    --border: {{ $themeColors['border'] ?? '#E2E8F0' }};
+    --radius: 22px;
+    --danger: {{ $themeColors['danger'] ?? '#DC2626' }};
+    --success: var(--tp-success);
+    --success-soft: var(--tp-success-soft);
+    --warning: var(--tp-warning);
+    --danger-soft: var(--tp-danger-soft);
+}
 
         * { box-sizing: border-box; }
 
@@ -344,16 +349,34 @@
 
         .form-error { margin-top: 7px; color: var(--danger); font-size: 11px; }
 
-        .alert {
-            padding: 14px 16px;
-            margin-bottom: 20px;
-            border-radius: 13px;
-            font-size: 12px;
-            line-height: 1.7;
-        }
+        
+            .alert {
+                padding: 14px 16px;
+                margin-bottom: 20px;
+                border: 1px solid var(--border);
+                border-radius: 13px;
+                font-size: 12px;
+                line-height: 1.7;
+            }
 
-        .alert-success { color: #365b32; background: #e8eee2; }
-        .alert-error { color: #9f3030; background: #fff0f0; }
+                        .alert-success {
+                color: #166534;
+                background: #F0FDF4;
+                border-color: #BBF7D0;
+            }
+
+            .alert-error {
+                color: var(--danger);
+                background: var(--danger-soft);
+                border-color: var(--danger-soft);
+            }
+
+            .alert-warning {
+                color: var(--warning);
+                background: #FFF7ED;
+                border-color: var(--warning);
+            }
+
 
         .btn {
             display: inline-flex;
@@ -394,15 +417,18 @@
         }
 
         .data-table th {
-            padding: 14px 13px;
-            color: #788270;
-            background: #f8f9f5;
-            text-align: left;
-            font-size: 10px;
-            letter-spacing: .6px;
-            text-transform: uppercase;
-        }
+    padding: 14px 13px;
+    color: var(--primary-dark);
+    background: var(--primary-soft);
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: .6px;
+    text-transform: uppercase;
+}
 
+.data-table tbody tr:hover {
+    background: var(--bg);
+}
         .data-table td {
             padding: 15px 13px;
             border-bottom: 1px solid var(--border);
@@ -488,16 +514,16 @@
                 backdrop-filter: blur(18px);
             }
             .bottom-link {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 5px;
-                padding: 5px 2px;
-                color: #8a9383;
-                font-size: 9px;
-                font-weight: 600;
-            }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 5px 2px;
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 600;
+}
             .bottom-link .nav-icon { width: auto; font-size: 21px; }
             .bottom-link.active { color: var(--primary-dark); }
             .bottom-link.active .nav-icon {
@@ -546,9 +572,9 @@
 }
 
 .btn-edit {
-    color: #526b3d;
-    background: #edf3e7;
-    border-color: #d6e3c9;
+    color: #1D4ED8;
+    background: #DBEAFE;
+    border-color: #BFDBFE;
 }
 
 .btn-delete {
@@ -639,13 +665,16 @@
                                 <span>⚙ &nbsp; Pengaturan</span>
                                 <span>⌄</span>
                             </button>
+                            
                             <div class="settings-submenu" id="settingsSubmenu">
                                 <a href="{{ route('purchase-types.index') }}">Jenis Purchase</a>
                                 <a href="{{ route('payment-types.index') }}">Jenis Payment</a>
                                 <a href="{{ route('exchange-rates.index') }}">Kurs Mata Uang</a>
                                 <a href="{{ route('shipment-batches.index') }}">Atur Batch Box</a>
                                 <a href="{{ route('employees.index') }}">Akun Karyawan</a>
+                                <a href="{{ route('theme-settings.index') }}">🎨 Pengaturan Tema</a>
                             </div>
+
                         </div>
                     @endif
 
@@ -670,19 +699,36 @@
 </div>
 
 <nav class="bottom-nav">
-    <a href="{{ route('dashboard') }}"
-       class="bottom-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-        <span class="nav-icon">⌂</span><span>Beranda</span>
+    <a
+        href="/"
+        class="bottom-link {{ request()->is('/') ? 'active' : '' }}"
+    >
+        <span class="nav-icon">⌂</span>
+        <span>Beranda</span>
     </a>
-    <a href="{{ route('purchase-orders.index') }}"
-       class="bottom-link {{ request()->routeIs('purchase-orders.*') ? 'active' : '' }}">
-        <span class="nav-icon">🛍</span><span>Input Purchase</span>
+
+    <a
+        href="{{ route('purchase-orders.index') }}"
+        class="bottom-link {{ request()->routeIs('purchase-orders.*') ? 'active' : '' }}"
+    >
+        <span class="nav-icon">🛍</span>
+        <span>Input Purchase</span>
     </a>
-    <a href="{{ route('arrived-items.index') }}" class="bottom-link">
-        <span class="nav-icon">📦</span><span>Input Arrived</span>
+
+    <a
+        href="{{ route('arrived-items.index') }}"
+        class="bottom-link {{ request()->routeIs('arrived-items.*') ? 'active' : '' }}"
+    >
+        <span class="nav-icon">📦</span>
+        <span>Input Arrived</span>
     </a>
-    <a href="{{ route('shipment-batches.recap') }}" class="bottom-link">
-        <span class="nav-icon">🚚</span><span>Rekap Pengiriman</span>
+
+    <a
+        href="{{ route('shipment-batches.recap') }}"
+        class="bottom-link {{ request()->routeIs('shipment-batches.recap') ? 'active' : '' }}"
+    >
+        <span class="nav-icon">🚚</span>
+        <span>Rekap Pengiriman</span>
     </a>
 </nav>
 

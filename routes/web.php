@@ -15,6 +15,7 @@ use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\ArrivedItemController;
 use App\Http\Controllers\ShipmentBatchController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\ThemeController;
 
 // Login: hanya untuk pengguna yang belum login
 Route::middleware('guest')->group(function () {
@@ -190,9 +191,16 @@ Route::middleware('auth')->group(function () {
                 [ShipmentBatchController::class, 'update']
             )->name('shipment-batches.update');
             Route::patch(
-    '/pengiriman-indonesia/{shipmentBatch}/buka',
-    [ShipmentBatchController::class, 'reopen']
-)->name('shipment-batches.reopen');
+                '/pengiriman-indonesia/{shipmentBatch}/buka',
+                [ShipmentBatchController::class, 'reopen']
+            )->name('shipment-batches.reopen');
+
+        // Pengaturan tema aplikasi
+        Route::get('/pengaturan/tema', [ThemeController::class, 'index'])
+            ->name('theme-settings.index');
+
+        Route::put('/pengaturan/tema', [ThemeController::class, 'update'])
+            ->name('theme-settings.update');
     });
 
         // Profil pengguna: ubah nama, email, dan password

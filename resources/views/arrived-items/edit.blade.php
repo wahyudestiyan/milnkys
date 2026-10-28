@@ -5,6 +5,7 @@
 @section('page-subtitle', 'Perbarui informasi barang arrived.')
 
 @section('content')
+
 <div class="section-heading">
     <div>
         <h2>Edit Nomor Resi</h2>
@@ -15,7 +16,7 @@
 </div>
 
 @if ($errors->any())
-    <div class="alert alert-danger">
+    <div class="alert alert-error">
         @foreach ($errors->all() as $error)
             <div>{{ $error }}</div>
         @endforeach
@@ -31,7 +32,10 @@
         @csrf
         @method('PUT')
 
-        <label for="tracking_number">Nomor Resi</label>
+        <label for="tracking_number">
+            Nomor Resi
+        </label>
+
         <input
             type="text"
             id="tracking_number"
@@ -41,26 +45,42 @@
             required
         >
 
-        <label for="purchase_order_id">Nomor Order / Customer</label>
+        <label for="purchase_order_id">
+            Nomor Order / Customer
+        </label>
+
         <select id="purchase_order_id" name="purchase_order_id">
             <option value="">-- Tanpa Purchase Order --</option>
 
             @foreach ($purchaseOrders as $order)
                 <option
                     value="{{ $order->id }}"
-                    @selected((string) old('purchase_order_id', $arrivedItem->purchase_order_id) === (string) $order->id)
+                    @selected(
+                        (string) old('purchase_order_id', $arrivedItem->purchase_order_id)
+                        === (string) $order->id
+                    )
                 >
                     {{ $order->order_number }} - {{ $order->customer_name }}
                 </option>
             @endforeach
         </select>
 
-        <label for="shipment_batch_id">Box Pengiriman</label>
-        <select id="shipment_batch_id" name="shipment_batch_id" required>
+        <label for="shipment_batch_id">
+            Box Pengiriman
+        </label>
+
+        <select
+            id="shipment_batch_id"
+            name="shipment_batch_id"
+            required
+        >
             @foreach ($batches as $batch)
                 <option
                     value="{{ $batch->id }}"
-                    @selected((string) old('shipment_batch_id', $arrivedItem->shipment_batch_id) === (string) $batch->id)
+                    @selected(
+                        (string) old('shipment_batch_id', $arrivedItem->shipment_batch_id)
+                        === (string) $batch->id
+                    )
                 >
                     {{ $batch->name }}
                 </option>
@@ -80,22 +100,30 @@
             <p>Belum ada foto.</p>
         @endif
 
-        <label for="photo">Ganti Foto (Opsional)</label>
+        <label for="photo">
+            Ganti Foto (Opsional)
+        </label>
+
         <input
             type="file"
             id="photo"
             name="photo"
             accept=".jpg,.jpeg,.png,image/jpeg,image/png"
         >
-        <small>Format JPG, JPEG, atau PNG. Maksimal 5 MB.</small>
+
+        <small>
+            Format JPG, JPEG, atau PNG. Maksimal 5 MB.
+        </small>
 
         <div class="form-actions">
             <button type="submit" class="btn btn-primary">
                 Simpan Perubahan
             </button>
 
-            <a href="{{ route('arrived-items.index') }}"
-               class="btn btn-secondary">
+            <a
+                href="{{ route('arrived-items.index') }}"
+                class="btn btn-secondary"
+            >
                 Batal
             </a>
         </div>
@@ -116,16 +144,23 @@
         width: 100%;
         max-width: 600px;
         padding: 10px 12px;
-        border: 1px solid #d7ded5;
+        border: 1px solid var(--border);
         border-radius: 7px;
         box-sizing: border-box;
-        background: #fff;
+        background: var(--surface);
+        color: var(--text);
+    }
+
+    .panel input:focus,
+    .panel select:focus {
+        border-color: var(--primary);
+        outline: none;
     }
 
     .panel small {
         display: block;
         margin-top: 7px;
-        color: #748075;
+        color: var(--muted);
     }
 
     .current-photo {
@@ -137,7 +172,7 @@
         height: 120px;
         object-fit: cover;
         border-radius: 8px;
-        border: 1px solid #e4e9e2;
+        border: 1px solid var(--border);
     }
 
     .form-actions {
@@ -147,4 +182,5 @@
         margin-top: 24px;
     }
 </style>
+
 @endsection

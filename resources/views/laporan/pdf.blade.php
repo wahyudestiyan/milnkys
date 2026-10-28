@@ -4,33 +4,86 @@
 <head>
     <meta charset="UTF-8">
     <title>Laporan Gudang</title>
-    <style>
-        body {
-            font-family: DejaVu Sans, sans-serif;
-            font-size: 10px;
-            color: #26352c;
-        }
-        h1 { font-size: 20px; margin-bottom: 5px; }
-        h2 { font-size: 13px; margin-top: 22px; }
-        .muted { color: #66736a; }
-        .summary { width: 100%; margin: 16px 0; }
-        .summary td {
-            border: 1px solid #dce4da;
-            padding: 10px;
-            width: 25%;
-        }
-        table.data {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        table.data th, table.data td {
-            border: 1px solid #dce4da;
-            padding: 6px;
-            text-align: left;
-        }
-        table.data th { background: #edf2e8; }
-        .right { text-align: right !important; }
-    </style>
+   
+<style>
+:root {
+    --primary: {{ $themeColors['primary'] }};
+    --primary-dark: {{ $themeColors['primary_dark'] }};
+    --text: {{ $themeColors['text'] }};
+    --muted: {{ $themeColors['muted'] }};
+    --border: {{ $themeColors['border'] }};
+    --primary-soft: {{ $themeColors['primary_soft'] }};
+}
+
+    body {
+        font-family: DejaVu Sans, sans-serif;
+        font-size: 10px;
+        color: var(--text);
+        background: var(--surface);
+    }
+
+    h1 {
+        font-size: 20px;
+        margin-bottom: 5px;
+        color: var(--text);
+    }
+
+    h2 {
+        font-size: 13px;
+        margin-top: 22px;
+        color: var(--primary-dark);
+    }
+
+    .muted {
+        color: var(--muted);
+    }
+
+    .summary {
+        width: 100%;
+        margin: 16px 0;
+        border-collapse: collapse;
+    }
+
+    .summary td {
+        border: 1px solid var(--border);
+        padding: 10px;
+        width: 25%;
+        background: var(--surface);
+        color: var(--text);
+    }
+
+    .summary strong {
+        color: var(--primary-dark);
+    }
+
+    table.data {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table.data th,
+    table.data td {
+        border: 1px solid var(--border);
+        padding: 6px;
+        text-align: left;
+    }
+
+    table.data th {
+        background: var(--primary-soft);
+        color: var(--text);
+        font-weight: bold;
+    }
+
+    table.data td {
+        background: var(--surface);
+        color: var(--text);
+    }
+
+    .right {
+        text-align: right !important;
+    }
+</style>
+
 </head>
 <body>
     <h1>Laporan Operasional Gudang</h1>

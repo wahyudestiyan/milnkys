@@ -1,22 +1,22 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#f5f7f1">
+    <meta name="theme-color" content="{{ $themeColors['background'] ?? '#F5F8FF' }}">
     <title>Milnkys</title>
 
     <style>
         :root {
-            --primary: #718765;
-            --primary-dark: #465b3d;
-            --primary-soft: #e8eee2;
-            --bg: #f5f7f1;
-            --surface: #ffffff;
-            --text: #263326;
-            --muted: #899184;
-            --border: #edf0e8;
+            --primary: {{ $themeColors['primary'] ?? '#2563EB' }};
+            --primary-dark: {{ $themeColors['primary_dark'] ?? '#1D4ED8' }};
+            --primary-soft: {{ $themeColors['primary_soft'] ?? '#DBEAFE' }};
+            --bg: {{ $themeColors['background'] ?? '#F5F8FF' }};
+            --surface: {{ $themeColors['surface'] ?? '#FFFFFF' }};
+            --text: {{ $themeColors['text'] ?? '#1E293B' }};
+            --muted: {{ $themeColors['muted'] ?? '#64748B' }};
+            --border: {{ $themeColors['border'] ?? '#E2E8F0' }};
+            --danger: {{ $themeColors['danger'] ?? '#DC2626' }};
             --radius: 22px;
         }
 
@@ -75,7 +75,7 @@
             color: white;
             background: var(--primary);
             font-size: 24px;
-            box-shadow: 0 6px 14px #71876530;
+            box-shadow: 0 6px 14px color-mix(in srgb, var(--primary) 19%, transparent);
         }
 
         .brand-name {
@@ -92,7 +92,7 @@
 
         .menu-label {
             margin: 24px 12px 10px;
-            color: #a0a79a;
+            color: var(--muted);
             font-size: 10px;
             font-weight: 800;
             letter-spacing: 1.4px;
@@ -105,14 +105,14 @@
             padding: 14px;
             margin: 4px 0;
             border-radius: 14px;
-            color: #747e6d;
+            color: var(--muted);
             font-size: 13px;
             font-weight: 600;
             transition: .2s;
         }
 
         .nav-link:hover {
-            background: #f5f7f1;
+            background: var(--bg);
         }
 
         .nav-link.active {
@@ -158,7 +158,7 @@
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 15px;
-            box-shadow: 0 12px 30px #26332618;
+            box-shadow: 0 12px 30px #1E293B18;
         }
 
         .profile-menu.open .profile-dropdown {
@@ -187,7 +187,7 @@
         }
 
         .profile-dropdown .logout-button {
-            color: #b54747;
+            color: var(--danger);
         }
 
         /* Dropdown submenu Pengaturan */
@@ -249,7 +249,7 @@
         .sidebar-note {
             margin-top: 38px;
             padding: 18px;
-            background: #f5f7f1;
+            background: var(--bg);
             border-radius: 18px;
         }
 
@@ -344,7 +344,7 @@
             margin-bottom: 27px;
             border-radius: 26px;
             color: white;
-            background: linear-gradient(120deg, #526b48, #819775);
+            background: linear-gradient(120deg, var(--primary-dark), var(--primary));
         }
 
         .hero::after {
@@ -387,7 +387,7 @@
         .hero p {
             max-width: 410px;
             margin: 0;
-            color: #edf2e9;
+            color: var(--primary-soft);
             font-size: 12px;
             line-height: 1.9;
         }
@@ -425,7 +425,7 @@
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            box-shadow: 0 5px 20px #26332605;
+            box-shadow: 0 5px 20px #1E293B08;
         }
 
         .stat-top {
@@ -445,8 +445,8 @@
         }
 
         .stat-icon.green {
-            color: #4e6b43;
-            background: #e8eee2;
+            color: var(--primary-dark);
+            background: var(--primary-soft);
         }
 
         .stat-icon.gold {
@@ -497,7 +497,7 @@
 
         .quick-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 24px #2633260c;
+            box-shadow: 0 8px 24px #1E293B12;
         }
 
         .quick-icon {
@@ -718,7 +718,7 @@
                 display: grid;
                 grid-template-columns: repeat(4, minmax(0, 1fr));
                 padding: 9px 7px calc(9px + env(safe-area-inset-bottom));
-                background: #ffffffed;
+                background: color-mix(in srgb, var(--surface) 93%, transparent);
                 border-top: 1px solid var(--border);
                 backdrop-filter: blur(18px);
             }
@@ -730,7 +730,7 @@
                 justify-content: center;
                 gap: 5px;
                 padding: 5px 2px;
-                color: #8a9383;
+                color: var(--muted);
                 font-size: 9px;
                 font-weight: 600;
             }
@@ -760,7 +760,6 @@
         }
     </style>
 </head>
-
 <body>
 <div class="app">
 
@@ -853,7 +852,9 @@
                 <a href="{{ route('exchange-rates.index') }}">Kurs Mata Uang</a>
                  <a href="{{ route('shipment-batches.index') }}">Atur Batch Box</a>
                 <a href="{{ route('employees.index') }}">Akun Karyawan</a>
+                <a href="{{ route('theme-settings.index') }}">🎨 Pengaturan Tema</a>
             </div>
+            
         </div>
 
         <form action="{{ route('logout') }}" method="POST">
@@ -1063,7 +1064,7 @@
 <style>
     
 .activity-card {
-    background: #fff;
+    background: var(--surface);
     border-radius: 20px;
     overflow: hidden;
 }
@@ -1073,7 +1074,7 @@
     align-items: center;
     gap: 12px;
     padding: 14px 16px;
-    border-bottom: 1px solid #edf0e8;
+    border-bottom: 1px solid var(--border);
 }
 
 .activity-item:last-child {
@@ -1087,7 +1088,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #edf2e8;
+    background: var(--primary-soft);
     border-radius: 14px;
     font-size: 20px;
 }
@@ -1100,26 +1101,26 @@
 .activity-content strong {
     display: block;
     font-size: 13px;
-    color: #26392f;
+    color: var(--text);
 }
 
 .activity-content p {
     margin: 5px 0 0;
     font-size: 12px;
-    color: #7b857c;
+    color: var(--muted);
     overflow-wrap: anywhere;
 }
 
 .activity-time {
     flex-shrink: 0;
     font-size: 10px;
-    color: #899187;
+    color: var(--muted);
 }
 
 .empty-state {
     padding: 30px 16px;
     text-align: center;
-    color: #7b857c;
+    color: var(--muted);
 }
 
 .empty-icon {
@@ -1129,13 +1130,54 @@
 
 .empty-state strong {
     display: block;
-    color: #26392f;
+    color: var(--text);
 }
 
 .empty-state p {
     font-size: 12px;
 }
 </style>
+
+<style>
+/* Tema biru modern Milnkys */
+.nav-link:hover,
+.profile-dropdown a:hover,
+.profile-dropdown button:hover,
+.profile-settings-toggle:hover,
+.sidebar-note {
+    background: var(--bg);
+}
+.nav-link.active,
+.avatar,
+.quick-icon,
+.empty-icon,
+.bottom-link.active .nav-icon {
+    color: var(--primary-dark);
+    background: var(--primary-soft);
+}
+.hero {
+    background: linear-gradient(120deg, var(--primary-dark), var(--primary));
+}
+.stat-icon.green {
+    color: var(--primary-dark);
+    background: var(--primary-soft);
+}
+.activity-item {
+    border-bottom-color: var(--border);
+}
+.activity-icon {
+    color: var(--primary-dark);
+    background: var(--primary-soft);
+}
+.activity-content strong,
+.empty-state strong {
+    color: var(--text);
+}
+.bottom-nav {
+    border-top-color: var(--border);
+}
+</style>
+
 <script>
     // Dropdown akun kanan atas: Pengaturan dan Logout
     const profileMenu = document.getElementById('profileMenu');

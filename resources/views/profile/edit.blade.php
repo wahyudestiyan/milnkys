@@ -1,44 +1,41 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pengguna - Milnkys</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
+@extends('layouts.app')
 
-<body class="min-h-screen bg-gray-50 text-gray-800">
+@section('content')
+<script src="https://cdn.tailwindcss.com"></script>
 
-    {{-- Header --}}
-    <header class="bg-white border-b border-gray-200 shadow-sm">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4">
-            <div class="flex items-center justify-between gap-4">
-                <div class="flex items-center gap-3">
-                    <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-green-100 text-green-700">
-                        <span class="text-xl">👤</span>
-                    </div>
+<style>
+/* Pengguna: warna mengikuti variabel tema layouts.app */
+.user-settings-page { color: var(--text); }
+.user-settings-page .text-gray-900,
+.user-settings-page .text-gray-800,
+.user-settings-page .text-gray-700 { color: var(--text) !important; }
+.user-settings-page .text-gray-600,
+.user-settings-page .text-gray-500,
+.user-settings-page .text-gray-400 { color: var(--muted) !important; }
+.user-settings-page .bg-white { background-color: var(--surface) !important; }
+.user-settings-page .bg-gray-50 { background-color: var(--bg) !important; }
+.user-settings-page .border-gray-200,
+.user-settings-page .border-gray-300 { border-color: var(--border) !important; }
+.user-settings-page .bg-green-100 { background-color: var(--primary-soft) !important; }
+.user-settings-page .text-green-700 { color: var(--primary-dark) !important; }
+.user-settings-page .border-green-200 { border-color: var(--border) !important; }
+.user-settings-page .bg-green-50 { background-color: var(--primary-soft) !important; }
+.user-settings-page .text-green-800 { color: var(--text) !important; }
+.user-settings-page .focus\:border-green-600:focus { border-color: var(--primary) !important; }
+.user-settings-page .focus\:ring-green-100:focus { --tw-ring-color: var(--primary-soft) !important; }
+.user-settings-page .bg-blue-600 { background-color: var(--primary) !important; }
+.user-settings-page .hover\:bg-blue-700:hover { background-color: var(--primary-dark) !important; }
+.user-settings-page .focus\:ring-blue-600:focus { --tw-ring-color: var(--primary) !important; }
+.user-settings-page .hover\:bg-gray-100:hover { background-color: var(--primary-soft) !important; }
+.user-settings-page input { color: var(--text); }
+.user-settings-page input::placeholder { color: var(--muted); }
+.user-settings-page .text-red-600,
+.user-settings-page .text-red-700 { color: var(--danger) !important; }
+.user-settings-page .border-red-200 { border-color: var(--danger) !important; }
+.user-settings-page .bg-red-50 { background-color: var(--danger-soft) !important; }
+</style>
 
-                    <div>
-                        <h1 class="text-xl font-bold text-gray-900">
-                            Pengguna
-                        </h1>
-                        <p class="text-sm text-gray-500">
-                            Pengaturan profil akun Milnkys
-                        </p>
-                    </div>
-                </div>
-
-                <a href="{{ route('dashboard') }}"
-                   class="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-100">
-                    <span>←</span>
-                    <span class="hidden sm:inline">Kembali</span>
-                </a>
-            </div>
-        </div>
-    </header>
-
-    {{-- Konten --}}
-    <main class="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+<main class="user-settings-page max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
 
         {{-- Informasi halaman --}}
         <div class="mb-6">
@@ -49,17 +46,6 @@
                 Perbarui informasi akun dan password Anda.
             </p>
         </div>
-
-        {{-- Notifikasi sukses --}}
-        @if (session('success'))
-            <div class="mb-5 flex items-start gap-3 rounded-xl border border-green-200 bg-green-50 p-4 text-green-800">
-                <span class="text-lg">✓</span>
-                <div>
-                    <p class="font-semibold">Berhasil</p>
-                    <p class="text-sm">{{ session('success') }}</p>
-                </div>
-            </div>
-        @endif
 
         {{-- Notifikasi error --}}
         @if ($errors->any())
@@ -166,12 +152,22 @@
                             Password lama
                         </label>
 
-                        <input id="current_password"
-                               name="current_password"
-                               type="password"
-                               required
-                               autocomplete="current-password"
-                               class="w-full rounded-lg border border-gray-300 bg-white px-3.5 py-2.5 text-sm outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100">
+                        <div class="relative">
+                            <input id="current_password"
+                                   name="current_password"
+                                   type="password"
+                                   required
+                                   autocomplete="current-password"
+                                   class="w-full rounded-lg border border-gray-300 bg-white px-3.5 py-2.5 pr-12 text-sm outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100">
+                            <button type="button" onclick="togglePasswordVisibility('current_password', this)"
+                                    class="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 transition hover:text-gray-800"
+                                    aria-label="Tampilkan password lama" aria-pressed="false">
+                                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                                    <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                            </button>
+                        </div>
 
                         @error('current_password')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -185,12 +181,22 @@
                                 Password baru
                             </label>
 
-                            <input id="password"
-                                   name="password"
-                                   type="password"
-                                   autocomplete="new-password"
-                                   minlength="8"
-                                   class="w-full rounded-lg border border-gray-300 bg-white px-3.5 py-2.5 text-sm outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100">
+                            <div class="relative">
+                                <input id="password"
+                                       name="password"
+                                       type="password"
+                                       autocomplete="new-password"
+                                       minlength="8"
+                                       class="w-full rounded-lg border border-gray-300 bg-white px-3.5 py-2.5 pr-12 text-sm outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100">
+                                <button type="button" onclick="togglePasswordVisibility('password', this)"
+                                        class="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 transition hover:text-gray-800"
+                                        aria-label="Tampilkan password baru" aria-pressed="false">
+                                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                                        <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <circle cx="12" cy="12" r="3"/>
+                                    </svg>
+                                </button>
+                            </div>
 
                             <p class="mt-1.5 text-xs text-gray-500">
                                 Minimal 8 karakter.
@@ -207,11 +213,21 @@
                                 Konfirmasi password baru
                             </label>
 
-                            <input id="password_confirmation"
-                                   name="password_confirmation"
-                                   type="password"
-                                   autocomplete="new-password"
-                                   class="w-full rounded-lg border border-gray-300 bg-white px-3.5 py-2.5 text-sm outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100">
+                            <div class="relative">
+                                <input id="password_confirmation"
+                                       name="password_confirmation"
+                                       type="password"
+                                       autocomplete="new-password"
+                                       class="w-full rounded-lg border border-gray-300 bg-white px-3.5 py-2.5 pr-12 text-sm outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100">
+                                <button type="button" onclick="togglePasswordVisibility('password_confirmation', this)"
+                                        class="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 transition hover:text-gray-800"
+                                        aria-label="Tampilkan konfirmasi password" aria-pressed="false">
+                                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                                        <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <circle cx="12" cy="12" r="3"/>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -230,7 +246,7 @@
                 </a>
 
                 <button type="submit"
-                        class="inline-flex items-center justify-center gap-2 rounded-lg bg-green-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2">
+                        class="inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2">
                     <span>✓</span>
                     Simpan Perubahan
                 </button>
@@ -243,6 +259,24 @@
         </p>
 
     </main>
+@endsection
 
-</body>
-</html>
+
+<script>
+    function togglePasswordVisibility(inputId, button) {
+        const input = document.getElementById(inputId);
+        if (!input) return;
+
+        const isHidden = input.type === 'password';
+        input.type = isHidden ? 'text' : 'password';
+        button.setAttribute('aria-pressed', String(isHidden));
+        button.setAttribute(
+            'aria-label',
+            (isHidden ? 'Sembunyikan ' : 'Tampilkan ') + 'password'
+        );
+
+        button.innerHTML = isHidden
+            ? `<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3l18 18M10.6 10.6a2 2 0 0 0 2.8 2.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.9 5.2A10.9 10.9 0 0 1 12 5c6.4 0 10 7 10 7a16 16 0 0 1-3.1 3.9M6.2 6.2C3.5 8 2 12 2 12s3.6 7 10 7c1.4 0 2.7-.3 3.8-.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`
+            : `<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="3"/></svg>`;
+    }
+</script>

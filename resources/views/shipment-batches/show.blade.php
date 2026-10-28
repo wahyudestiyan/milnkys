@@ -159,69 +159,69 @@
     </div>
 </div>
 
+
 <style>
-    .container { max-width: 1200px; margin: 0 auto; padding: 24px; color: #253126; }
-    .back-link { display: inline-block; margin-bottom: 20px; color: #506744; text-decoration: none; font-weight: 600; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 24px; color: var(--text); }
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; font-weight: 600; }
     .page-header { display: flex; justify-content: space-between; align-items: center; gap: 15px; margin-bottom: 24px; }
     .page-header h1 { margin: 0 0 6px; font-size: 26px; }
-    .page-header p { margin: 0; color: #748075; }
+    .page-header p { margin: 0; color: var(--muted); }
     .summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 22px; }
-    .summary-card { background: #fff; border: 1px solid #e4e9e2; border-radius: 12px; padding: 18px; }
-    .summary-card span { display: block; color: #748075; font-size: 13px; margin-bottom: 8px; }
-    .summary-card strong { font-size: 20px; overflow-wrap: anywhere; }
-    .panel { background: #fff; border: 1px solid #e4e9e2; border-radius: 14px; padding: 22px; }
-    .panel h2 { margin: 0 0 18px; font-size: 18px; }
+    .summary-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+    .summary-card span { display: block; color: var(--muted); font-size: 13px; margin-bottom: 8px; }
+    .summary-card strong { font-size: 20px; overflow-wrap: anywhere; color: var(--text); }
+    .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 22px; }
+    .panel h2 { margin: 0 0 18px; font-size: 18px; color: var(--text); }
     .table-wrapper { overflow-x: auto; }
     table { width: 100%; min-width: 650px; border-collapse: collapse; }
-    th, td { text-align: left; padding: 12px; border-bottom: 1px solid #edf0eb; vertical-align: middle; }
-    th { background: #f7f9f5; color: #667263; font-size: 12px; text-transform: uppercase; }
+    th, td { text-align: left; padding: 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    th { background: var(--primary-soft); color: var(--primary-dark); font-size: 12px; text-transform: uppercase; }
     .item-photo { width: 64px; height: 64px; object-fit: cover; border-radius: 8px; }
-    .no-photo { color: #888; font-size: 12px; }
+    .no-photo { color: var(--muted); font-size: 12px; }
     .status {
-    display: inline-block;
-    padding: 4px 8px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 600;
-    white-space: nowrap;
-}
-    .status.open { background: #e6f4e5; color: #28632d; }
-    .status.closed { background: #eee; color: #666; }
-    .empty-state { padding: 28px 12px; text-align: center; color: #788174; background: #f8faf7; border-radius: 10px; }
-
-
-@media (max-width: 650px) {
-    .container {
-        padding: 14px;
-    }
-
-    .page-header {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .header-actions {
-        width: 100%;
-    }
-
-    .summary {
-        grid-template-columns: 1fr;
-    }
-
-    .panel {
-        padding: 14px;
-    }
-
-    .btn,
-    button {
-        padding: 5px 8px;
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: 20px;
         font-size: 11px;
+        font-weight: 600;
+        white-space: nowrap;
     }
+    .status.open { background: var(--success-soft); color: var(--success); }
+    .status.closed { background: var(--bg); color: var(--muted); }
+    .empty-state { padding: 28px 12px; text-align: center; color: var(--muted); background: var(--bg); border-radius: 10px; }
 
-    .status {
-        padding: 4px 7px;
-        font-size: 10px;
+    @media (max-width: 650px) {
+        .container {
+            padding: 14px;
+        }
+
+        .page-header {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .header-actions {
+            width: 100%;
+        }
+
+        .summary {
+            grid-template-columns: 1fr;
+        }
+
+        .panel {
+            padding: 14px;
+        }
+
+        .btn,
+        button {
+            padding: 5px 8px;
+            font-size: 11px;
+        }
+
+        .status {
+            padding: 4px 7px;
+            font-size: 10px;
+        }
     }
-}
 </style>
 @endsection

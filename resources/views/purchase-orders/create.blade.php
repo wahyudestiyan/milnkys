@@ -33,7 +33,7 @@
     <section class="panel">
         <div class="panel-header">
             <h2>Informasi Pesanan</h2>
-            <p>Nama customer dan nomor order diisi manual oleh Admin Alma.</p>
+            <p>Nama customer dan nomor order diisi manual oleh Admin Milnkys.</p>
         </div>
 
         <div class="form-grid">

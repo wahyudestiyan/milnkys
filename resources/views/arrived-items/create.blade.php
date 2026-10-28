@@ -23,7 +23,8 @@
 @if ($errors->any())
     <div class="alert alert-error">
         <strong>Periksa kembali data berikut:</strong>
-        <ul style="margin:8px 0 0;padding-left:20px;">
+
+        <ul style="margin: 8px 0 0; padding-left: 20px;">
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach
@@ -44,6 +45,7 @@
 
         <div class="form-grid">
 
+            {{-- Nomor Resi --}}
             <div class="form-group full">
                 <label class="form-label" for="tracking_number">
                     Nomor Resi <span class="required">*</span>
@@ -66,6 +68,7 @@
                 @enderror
             </div>
 
+            {{-- Box Pengiriman --}}
             <div class="form-group full">
                 <label class="form-label" for="shipment_batch_id">
                     Box Pengiriman <span class="required">*</span>
@@ -105,6 +108,7 @@
                 @enderror
             </div>
 
+            {{-- Nomor Order Purchase --}}
             <div class="form-group full">
                 <label class="form-label" for="purchase_order_id">
                     Nomor Order Purchase
@@ -137,6 +141,7 @@
                 @enderror
             </div>
 
+            {{-- Foto Barang --}}
             <div class="form-group full">
                 <label class="form-label" for="photo">
                     Foto Barang Arrived <span class="required">*</span>
@@ -155,12 +160,15 @@
                     Format JPG atau PNG, maksimal 5 MB.
                 </div>
 
-                <div id="photo-preview-wrap" style="display:none;margin-top:12px;">
+                <div
+                    id="photo-preview-wrap"
+                    style="display: none; margin-top: 12px;"
+                >
                     <img
                         id="photo-preview"
                         src=""
                         alt="Preview foto barang"
-                        style="max-width:100%;max-height:300px;object-fit:contain;border-radius:10px;"
+                        style="max-width: 100%; max-height: 300px; object-fit: contain; border-radius: 10px;"
                     >
                 </div>
 

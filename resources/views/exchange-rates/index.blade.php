@@ -1,155 +1,156 @@
+@extends('layouts.app')
 
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f5f7f1">
-    <title>Pengaturan Kurs - Milnkys</title>
+@section('content')
 
     <style>
-        * { box-sizing: border-box; }
+        
+* { box-sizing: border-box; }
 
-        body {
-            margin: 0;
-            padding: 24px 16px 40px;
-            background: #f5f7f1;
-            color: #263326;
-            font-family: "Segoe UI", Arial, sans-serif;
-        }
+body {
+    margin: 0;
+    padding: 24px 16px 40px;
+    background: var(--bg, #F5F8FF);
+    color: var(--text, #1E293B);
+    font-family: "Segoe UI", Arial, sans-serif;
+}
 
-        .container { max-width: 760px; margin: auto; }
+.container { max-width: 760px; margin: auto; }
 
-        .back {
-            display: inline-block;
-            margin-bottom: 24px;
-            color: #526b48;
-            font-size: 13px;
-            font-weight: 700;
-            text-decoration: none;
-        }
+.back {
+    display: inline-block;
+    margin-bottom: 24px;
+    color: var(--primary, #2563EB);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+}
 
-        .heading { margin-bottom: 25px; }
+.back:hover { color: var(--primary-dark, #1D4ED8); }
 
-        .eyebrow {
-            color: #718765;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 1.4px;
-        }
+.heading { margin-bottom: 25px; }
 
-        h1 {
-            margin: 9px 0;
-            font-size: 27px;
-            letter-spacing: -.8px;
-        }
+.eyebrow {
+    color: var(--primary, #2563EB);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+}
 
-        .muted {
-            color: #899184;
-            font-size: 13px;
-            line-height: 1.7;
-        }
+h1 {
+    margin: 9px 0;
+    font-size: 27px;
+    letter-spacing: -.8px;
+}
 
-        .card {
-            margin-bottom: 18px;
-            padding: 23px;
-            background: white;
-            border: 1px solid #e8ece3;
-            border-radius: 22px;
-            box-shadow: 0 6px 24px #26332606;
-        }
+.muted {
+    color: var(--muted, #64748B);
+    font-size: 13px;
+    line-height: 1.7;
+}
 
-        .card h2 {
-            margin: 0 0 8px;
-            font-size: 17px;
-        }
+.card {
+    margin-bottom: 18px;
+    padding: 23px;
+    background: var(--surface, #FFFFFF);
+    border: 1px solid var(--border, #E2E8F0);
+    border-radius: 22px;
+    box-shadow: 0 6px 24px #1E293B06;
+}
 
-        label {
-            display: block;
-            margin: 22px 0 9px;
-            font-size: 12px;
-            font-weight: 700;
-        }
+.card h2 {
+    margin: 0 0 8px;
+    font-size: 17px;
+}
 
-        input {
-            width: 100%;
-            min-height: 49px;
-            padding: 12px 14px;
-            border: 1px solid #dfe5d9;
-            border-radius: 13px;
-            background: #fbfcf9;
-            color: #263326;
-            font: inherit;
-            font-size: 15px;
-            outline: none;
-        }
+label {
+    display: block;
+    margin: 22px 0 9px;
+    font-size: 12px;
+    font-weight: 700;
+}
 
-        input:focus {
-            border-color: #718765;
-            box-shadow: 0 0 0 3px #71876520;
-        }
+input {
+    width: 100%;
+    min-height: 49px;
+    padding: 12px 14px;
+    border: 1px solid var(--border, #E2E8F0);
+    border-radius: 13px;
+    background: var(--bg, #F8FAFC);
+    color: var(--text, #1E293B);
+    font: inherit;
+    font-size: 15px;
+    outline: none;
+}
 
-        button {
-            width: 100%;
-            min-height: 48px;
-            margin-top: 16px;
-            border: 0;
-            border-radius: 14px;
-            background: #718765;
-            color: white;
-            font-size: 14px;
-            font-weight: 800;
-            cursor: pointer;
-        }
+input:focus {
+    border-color: var(--primary, #2563EB);
+    box-shadow: 0 0 0 3px var(--primary-soft, #2563EB20);
+}
 
-        button:hover { background: #526b48; }
+button {
+    width: 100%;
+    min-height: 48px;
+    margin-top: 16px;
+    border: 0;
+    border-radius: 14px;
+    background: var(--primary, #2563EB);
+    color: white;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+}
 
-        .success {
-            margin-bottom: 18px;
-            padding: 14px 16px;
-            border-radius: 13px;
-            background: #e8eee2;
-            color: #465b3d;
-            font-size: 13px;
-        }
+button:hover {
+    background: var(--primary-dark, #1D4ED8);
+}
 
-        .error {
-            margin-top: 7px;
-            color: #b42318;
-            font-size: 12px;
-        }
+.success {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    border-radius: 13px;
+    background: var(--success-soft, #DBEAFE);
+    color: var(--success, #1D4ED8);
+    font-size: 13px;
+}
 
-        .rate-display {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            margin-top: 19px;
-            padding: 16px;
-            border-radius: 15px;
-            background: #f5f7f1;
-        }
+.error {
+    margin-top: 7px;
+    color: var(--danger, #B42318);
+    font-size: 12px;
+}
 
-        .rate-value {
-            color: #465b3d;
-            font-size: 20px;
-            font-weight: 800;
-        }
+.rate-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 19px;
+    padding: 16px;
+    border-radius: 15px;
+    background: var(--primary-soft, #F5F8FF);
+}
 
-        .result {
-            overflow-wrap: anywhere;
-            margin: 18px 0 8px;
-            color: #465b3d;
-            font-size: clamp(27px, 7vw, 36px);
-            font-weight: 800;
-            letter-spacing: -1px;
-        }
+.rate-value {
+    color: var(--primary, #1D4ED8);
+    font-size: 20px;
+    font-weight: 800;
+}
 
-        @media (max-width: 480px) {
-            body { padding: 20px 13px 30px; }
-            .card { padding: 19px; border-radius: 19px; }
-            h1 { font-size: 24px; }
-        }
+.result {
+    overflow-wrap: anywhere;
+    margin: 18px 0 8px;
+    color: var(--primary, #1D4ED8);
+    font-size: clamp(27px, 7vw, 36px);
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+@media (max-width: 480px) {
+    body { padding: 20px 13px 30px; }
+    .card { padding: 19px; border-radius: 19px; }
+    h1 { font-size: 24px; }
+}
+
     </style>
 </head>
 
@@ -251,12 +252,12 @@
     const result = document.getElementById('result');
 
     const rate = Number(@json((float) ($exchangeRate?->rate ?? 0)));
- const currencyFormatter = new Intl.NumberFormat('id-ID', {
-    style: 'currency',
-    currency: 'IDR',
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-});
+    const currencyFormatter = new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
 
     function calculateConversion() {
         const amount = Number(amountInput.value);
@@ -277,4 +278,4 @@
     amountInput.addEventListener('input', calculateConversion);
 </script>
 </body>
-</html>
+@endsection

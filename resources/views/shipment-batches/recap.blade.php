@@ -123,12 +123,13 @@
     </div>
 </div>
 
+
 <style>
     .container {
         max-width: 1400px;
         margin: 0 auto;
         padding: 24px;
-        color: #253126;
+        color: var(--text);
     }
 
     .page-header {
@@ -143,11 +144,12 @@
     .page-header h1 {
         margin: 0 0 6px;
         font-size: 26px;
+        color: var(--text);
     }
 
     .page-header p {
         margin: 0;
-        color: #748075;
+        color: var(--muted);
     }
 
     .summary {
@@ -158,15 +160,15 @@
     }
 
     .summary-card {
-        background: #fff;
-        border: 1px solid #e4e9e2;
+        background: var(--surface);
+        border: 1px solid var(--border);
         border-radius: 12px;
         padding: 18px;
     }
 
     .summary-card span {
         display: block;
-        color: #748075;
+        color: var(--muted);
         font-size: 13px;
         margin-bottom: 8px;
     }
@@ -174,11 +176,12 @@
     .summary-card strong {
         font-size: 22px;
         overflow-wrap: anywhere;
+        color: var(--text);
     }
 
     .panel {
-        background: #fff;
-        border: 1px solid #e4e9e2;
+        background: var(--surface);
+        border: 1px solid var(--border);
         border-radius: 14px;
         padding: 22px;
     }
@@ -186,6 +189,7 @@
     .panel h2 {
         margin: 0 0 18px;
         font-size: 18px;
+        color: var(--text);
     }
 
     .table-wrapper {
@@ -201,20 +205,22 @@
     th, td {
         text-align: left;
         padding: 12px;
-        border-bottom: 1px solid #edf0eb;
+        border-bottom: 1px solid var(--border);
         vertical-align: middle;
         white-space: nowrap;
+        color: var(--text);
     }
 
     thead th {
-        background: #f7f9f5;
-        color: #667263;
+        background: var(--primary-soft);
+        color: var(--primary-dark);
         font-size: 11px;
         text-transform: uppercase;
     }
 
     tfoot th {
-        background: #f7f9f5;
+        background: var(--bg);
+        color: var(--text);
         font-size: 12px;
     }
 
@@ -242,9 +248,9 @@
     }
 
     .btn-view {
-        background: #eff4fa;
-        border-color: #d8e3f0;
-        color: #40556f;
+        background: var(--primary-soft);
+        border-color: var(--border);
+        color: var(--primary-dark);
     }
 
     .status {
@@ -257,25 +263,25 @@
     }
 
     .status.open {
-        background: #e6f4e5;
-        color: #28632d;
+        background: var(--success-soft);
+        color: var(--success);
     }
 
     .status.closed {
-        background: #eee;
-        color: #666;
+        background: var(--bg);
+        color: var(--muted);
     }
 
     .not-closed {
-        color: #9a6700;
+        color: var(--warning, var(--muted));
         font-size: 12px;
     }
 
     .empty-state {
         padding: 28px 12px;
         text-align: center;
-        color: #788174;
-        background: #f8faf7;
+        color: var(--muted);
+        background: var(--bg);
         border-radius: 10px;
     }
 
@@ -293,4 +299,5 @@
         }
     }
 </style>
+
 @endsection

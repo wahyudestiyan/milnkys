@@ -5,6 +5,7 @@
 @section('page-subtitle', 'Informasi lengkap barang yang sudah tiba.')
 
 @section('content')
+
 <div class="section-heading">
     <div>
         <h2>{{ $arrivedItem->tracking_number }}</h2>
@@ -12,13 +13,18 @@
     </div>
 
     <div class="actions">
-        <a href="{{ route('arrived-items.index') }}" class="btn btn-secondary">
+        <a
+            href="{{ route('arrived-items.index') }}"
+            class="btn btn-secondary"
+        >
             Kembali
         </a>
 
         @if (!$arrivedItem->shipmentBatch?->is_closed)
-            <a href="{{ route('arrived-items.edit', $arrivedItem) }}"
-               class="btn btn-primary">
+            <a
+                href="{{ route('arrived-items.edit', $arrivedItem) }}"
+                class="btn btn-primary"
+            >
                 Edit
             </a>
         @endif
@@ -26,7 +32,9 @@
 </div>
 
 @if (session('error'))
-    <div class="alert alert-danger">{{ session('error') }}</div>
+    <div class="alert alert-error">
+        {{ session('error') }}
+    </div>
 @endif
 
 <div class="panel">
@@ -42,17 +50,23 @@
 
         <div>
             <span>Nomor Order</span>
-            <strong>{{ $arrivedItem->purchaseOrder?->order_number ?? '-' }}</strong>
+            <strong>
+                {{ $arrivedItem->purchaseOrder?->order_number ?? '-' }}
+            </strong>
         </div>
 
         <div>
             <span>Customer</span>
-            <strong>{{ $arrivedItem->purchaseOrder?->customer_name ?? '-' }}</strong>
+            <strong>
+                {{ $arrivedItem->purchaseOrder?->customer_name ?? '-' }}
+            </strong>
         </div>
 
         <div>
             <span>Box Pengiriman</span>
-            <strong>{{ $arrivedItem->shipmentBatch?->name ?? '-' }}</strong>
+            <strong>
+                {{ $arrivedItem->shipmentBatch?->name ?? '-' }}
+            </strong>
         </div>
 
         <div>
@@ -68,7 +82,9 @@
 
         <div>
             <span>Waktu Input</span>
-            <strong>{{ $arrivedItem->arrived_at?->format('d/m/Y H:i') ?? '-' }}</strong>
+            <strong>
+                {{ $arrivedItem->arrived_at?->format('d/m/Y H:i') ?? '-' }}
+            </strong>
         </div>
     </div>
 
@@ -76,8 +92,11 @@
         <h3>Foto Barang</h3>
 
         @if ($arrivedItem->photo_path)
-            <a href="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($arrivedItem->photo_path) }}"
-               target="_blank" rel="noopener noreferrer">
+            <a
+                href="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($arrivedItem->photo_path) }}"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
                 <img
                     src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($arrivedItem->photo_path) }}"
                     alt="Foto {{ $arrivedItem->tracking_number }}"
@@ -122,7 +141,7 @@
 
     .detail-grid span {
         display: block;
-        color: #748075;
+        color: var(--muted);
         font-size: 13px;
         margin-bottom: 6px;
     }
@@ -146,18 +165,18 @@
         max-height: 400px;
         object-fit: contain;
         border-radius: 10px;
-        border: 1px solid #e4e9e2;
+        border: 1px solid var(--border);
     }
 
     .action-btn {
         display: inline-block;
         padding: 5px 9px;
-        border: 1px solid #f5d0cc;
+        border: 1px solid var(--danger-soft);
         border-radius: 5px;
         font-size: 11px;
         font-weight: 600;
-        background: #fef0ef;
-        color: #b42318;
+        background: var(--danger-soft);
+        color: var(--danger);
         cursor: pointer;
     }
 
@@ -168,4 +187,5 @@
         }
     }
 </style>
+
 @endsection
