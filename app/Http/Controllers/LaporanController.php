@@ -7,6 +7,7 @@ use App\Models\ArrivedItem;
 use App\Models\ExchangeRate;
 use App\Models\PurchaseOrder;
 use App\Models\ShipmentBatch;
+use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -96,14 +97,17 @@ class LaporanController extends Controller
         );
     }
 
-    public function excel(Request $request)
-    {
-        $laporan = $this->dataLaporan($request);
+   
+public function excel(Request $request)
+{
+    $laporan = $this->dataLaporan($request);
 
-        return (new LaporanExcelExport($laporan))->download(
-            'laporan-gudang-'
-            . $laporan['tanggalAwal'] . '-'
-            . $laporan['tanggalAkhir'] . '.xlsx'
-        );
-    }
+    return Excel::download(
+        new LaporanExcelExport($laporan),
+        'laporan-gudang-'
+        . $laporan['tanggalAwal'] . '-'
+        . $laporan['tanggalAkhir'] . '.xlsx'
+    );
+}
+
 }
